@@ -1,0 +1,210 @@
+{{define "map17"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mapdate17</title>
+    <style>
+        #map-canvas {
+            width: 1280px;
+            height: 1000px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+</head>
+
+<body>
+    <output id="jamin" name={{.jamin}}></output>
+    <output id="datemin" name={{.datemin}}></output>
+    <output id="latmin" name={{.latmin}}></output>
+    <output id="longmin" name={{.longmin}}></output>
+    <output id="comin" name={{.comin}}></output>
+    <output id="tempmin" name={{.tempmin}}></output>
+    <output id="speedmin" name={{.speedmin}}></output>
+
+    <output id="jamax" name={{.jamax}}></output>
+    <output id="datemax" name={{.datemax}}></output>
+    <output id="latmax" name={{.latmax}}></output>
+    <output id="longmax" name={{.longmax}}></output>
+    <output id="comax" name={{.comax}}></output>
+    <output id="tempmax" name={{.tempmax}}></output>
+    <output id="speedmax" name={{.speedmax}}></output>
+
+    <script>
+        var a = document.getElementById("jamin").name;
+        var b = document.getElementById("datemin").name;
+        var c = document.getElementById("latmin").name;
+        var d = document.getElementById("longmin").name;
+        var f = document.getElementById("comin").name;
+
+        var g = document.getElementById("jamax").name;
+        var h = document.getElementById("datemax").name;
+        var i = document.getElementById("latmax").name;
+        var j = document.getElementById("longmax").name;
+        var k = document.getElementById("comax").name;
+
+        var u = document.getElementById("tempmin").name;
+        var v = document.getElementById("speedmin").name;
+
+        var w = document.getElementById("tempmax").name;
+        var x = document.getElementById("speedmax").name;
+
+        var o = parseFloat(c)
+        var p = parseFloat(d)
+        var q = parseFloat(i)
+        var r = parseFloat(j)
+
+        var markers = [
+            ['<p> Emisi CO2 Min </br>' + b + ' ' + a +
+                '</br> CO2 Concentration:' + f +
+                ' ppm </br> Temp:' + u + ' C </br>' +
+                'Speed:' + v + ' kMh</p>', o, p],
+
+            ['<p> Emisi CO2 Max </br>' + h + ' ' + g +
+                '</br> CO2 Concentration:' + k +
+                ' ppm </br> Temp:' + w + ' C </br>' +
+                'Speed:' + x + ' kMh</p>', q, r]
+        ];
+
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var mapOptions = {
+                //mapTypeId: google.maps.MapTypeId.ROADMAP,
+                zoom: 15
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+
+            var infowindow = new google.maps.InfoWindow(), marker, i;
+            var bounds = new google.maps.LatLngBounds(); // diluar looping
+
+            for (i = 0; i < markers.length; i++) {
+                pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                bounds.extend(pos); // di dalam looping
+                marker = new google.maps.Marker({
+                    position: pos,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(markers[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+                map.fitBounds(bounds); // setelah looping
+            }
+
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+    <div id="map-canvas"></div>
+</body>
+
+</html>
+{{end}}
+
+{{define "map29"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mapdate29</title>
+    <style>
+        #map-canvas {
+            width: 1280px;
+            height: 1000px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+</head>
+
+<body>
+    <output id="jamin" name={{.jamin}}></output>
+    <output id="datemin" name={{.datemin}}></output>
+    <output id="latmin" name={{.latmin}}></output>
+    <output id="longmin" name={{.longmin}}></output>
+    <output id="comin" name={{.comin}}></output>
+    <output id="tempmin" name={{.tempmin}}></output>
+    <output id="speedmin" name={{.speedmin}}></output>
+
+    <output id="jamax" name={{.jamax}}></output>
+    <output id="datemax" name={{.datemax}}></output>
+    <output id="latmax" name={{.latmax}}></output>
+    <output id="longmax" name={{.longmax}}></output>
+    <output id="comax" name={{.comax}}></output>
+    <output id="tempmax" name={{.tempmax}}></output>
+    <output id="speedmax" name={{.speedmax}}></output>
+    <script>
+        var a = document.getElementById("jamin").name;
+        var b = document.getElementById("datemin").name;
+        var c = document.getElementById("latmin").name;
+        var d = document.getElementById("longmin").name;
+        var f = document.getElementById("comin").name;
+
+        var g = document.getElementById("jamax").name;
+        var h = document.getElementById("datemax").name;
+        var i = document.getElementById("latmax").name;
+        var j = document.getElementById("longmax").name;
+        var k = document.getElementById("comax").name;
+
+        var u = document.getElementById("tempmin").name;
+        var v = document.getElementById("speedmin").name;
+
+        var w = document.getElementById("tempmax").name;
+        var x = document.getElementById("speedmax").name;
+
+        var o = parseFloat(c)
+        var p = parseFloat(d)
+        var q = parseFloat(i)
+        var r = parseFloat(j)
+
+        var markers = [
+            ['<p> Emisi CO2 Min </br>' + b + ' ' + a +
+                '</br> CO2 Concentration:' + f +
+                ' ppm </br> Temp:' + u + ' C </br>' +
+                'Speed:' + v + ' kMh</p>', o, p],
+
+            ['<p> Emisi CO2 Max </br>' + h + ' ' + g +
+                '</br> CO2 Concentration:' + k +
+                ' ppm </br> Temp:' + w + ' C </br>' +
+                'Speed:' + x + ' kMh</p>', q, r]
+        ];
+
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var mapOptions = {
+                //mapTypeId: google.maps.MapTypeId.ROADMAP,
+                zoom: 15
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+
+            var infowindow = new google.maps.InfoWindow(), marker, i;
+            var bounds = new google.maps.LatLngBounds(); // diluar looping
+
+            for (i = 0; i < markers.length; i++) {
+                pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                bounds.extend(pos); // di dalam looping
+                marker = new google.maps.Marker({
+                    position: pos,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(markers[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+                map.fitBounds(bounds); // setelah looping
+            }
+
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+    <div id="map-canvas"></div>
+</body>
+
+</html>
+{{end}}
